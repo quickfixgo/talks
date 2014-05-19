@@ -1,0 +1,67 @@
+Quickfix/Go: Why Go?
+
+
+* What is Go?
+
+- Language specification,
+- Small runtime (garbage collector, scheduler, etc),
+- Two compilers (`gc` and `gccgo`),
+- 'Batteries included' standard library,
+- Tools (build, fetch, test, document, profile, format),
+- Documentation.
+
+* Ok cool, should we use it?
+
+- Yes.
+
+* Why?
+
+- Fast and easy to write (kind of like Ruby)
+- Simple design, fast runtime (very C-like)
+- First class concurrency devices (best parts of Erlang without the Erlang)
+
+* Go is about composition
+
+Go is Object Oriented, but not in the usual way.
+
+- no classes (methods may be declared on any type)
+- no subtype inheritance
+- interfaces are satisfied implicitly (structural typing)
+
+The result: simple pieces connected by small interfaces.
+
+* Go is about concurrency
+
+Go provides CSP-like concurrency primitives.
+
+- lightweight threads (goroutines)
+- typed thread-safe communication and synchronization (channels)
+
+The result: comprehensible concurrent code.
+
+* What about performance?
+
+- Not too shabby!
+- From the Faq, "One of Go's design goals is to approach the performance of C for comparable programs"
+- But requires tuning, of which the go toolset has tremendous support for
+- Pre-tuning, expect somewhere between Java and C++
+
+* Quickfix/Go
+
+* Example Application
+
+.code whygo/app/acceptor_app.go
+
+* Acceptor
+
+.play whygo/acceptor.go
+
+* Example Initiator
+
+.code whygo/app/initiator_app.go
+
+* Initiator
+
+.play whygo/initiator.go
+
+* Next Steps
