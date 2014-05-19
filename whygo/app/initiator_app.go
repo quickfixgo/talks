@@ -6,9 +6,11 @@ import (
 	"github.com/quickfixgo/quickfix/fix/field"
 	"github.com/quickfixgo/quickfix/fix42/newordersingle"
 	"log"
+	"strconv"
 	"time"
 )
 
+//START BASE OMIT
 type InitiatorApp struct {
 	complete chan interface{}
 }
@@ -21,13 +23,16 @@ func (i *InitiatorApp) Run() {
 	<-i.complete
 }
 
+//END BASE OMIT
+
+//START OMIT
 func (i *InitiatorApp) OnLogon(sessionID quickfix.SessionID) {
 	log.Print("OnLogon ", sessionID)
 
 	go func() {
 		for i := 0; i < 100; i++ {
 			order := newordersingle.Builder(
-				field.NewClOrdID("100"),
+				field.NewClOrdID(strconv.Itoa(i)),
 				field.NewHandlInst("1"),
 				field.NewSymbol("TSLA"),
 				field.NewSide(enum.Side_BUY),
@@ -42,6 +47,8 @@ func (i *InitiatorApp) OnLogon(sessionID quickfix.SessionID) {
 		i.complete <- sessionID
 	}()
 }
+
+//END OMIT
 
 func (i *InitiatorApp) OnCreate(sessionID quickfix.SessionID) {
 	log.Print("OnCreate ", sessionID)

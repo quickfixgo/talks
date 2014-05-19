@@ -50,7 +50,11 @@ The result: comprehensible concurrent code.
 
 * Example Application
 
-.code whygo/app/acceptor_app.go
+.code whygo/app/acceptor_app.go /START BASE OMIT/,/END BASE OMIT/
+
+* Example Application
+
+.code whygo/app/acceptor_app.go /START TO FROM OMIT/,/END TO FROM OMIT/
 
 * Acceptor
 
@@ -58,7 +62,13 @@ The result: comprehensible concurrent code.
 
 * Example Initiator
 
-.code whygo/app/initiator_app.go
+.code whygo/app/initiator_app.go /START OMIT/,/END OMIT/ 
+
+* Example Initiator
+
+.code whygo/app/initiator_app.go /START BASE OMIT/,/END BASE OMIT/ 
+
+
 
 * Initiator
 
