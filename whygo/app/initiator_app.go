@@ -2,8 +2,7 @@ package app
 
 import (
 	"github.com/quickfixgo/quickfix"
-	"github.com/quickfixgo/quickfix/fix/enum"
-	"github.com/quickfixgo/quickfix/fix/field"
+	"github.com/quickfixgo/quickfix/enum"
 	"github.com/quickfixgo/quickfix/fix42/newordersingle"
 	"log"
 	"strconv"
@@ -31,13 +30,14 @@ func (i *InitiatorApp) OnLogon(sessionID quickfix.SessionID) {
 
 	go func() {
 		for i := 0; i < 100; i++ {
-			order := newordersingle.Builder(
-				field.NewClOrdID(strconv.Itoa(i)),
-				field.NewHandlInst("1"),
-				field.NewSymbol("TSLA"),
-				field.NewSide(enum.Side_BUY),
-				&field.TransactTimeField{},
-				field.NewOrdType(enum.OrdType_MARKET))
+			order := newordersingle.Message{
+				ClOrdID:      strconv.Itoa(i),
+				HandlInst:    "1",
+				Symbol:       "TSLA",
+				Side:         enum.Side_BUY,
+				TransactTime: time.Now(),
+				OrdType:      enum.OrdType_MARKET,
+			}
 
 			log.Print("Sending Order...")
 			quickfix.SendToTarget(order, sessionID)
@@ -56,9 +56,9 @@ func (i *InitiatorApp) OnCreate(sessionID quickfix.SessionID) {
 func (i *InitiatorApp) OnLogout(sessionID quickfix.SessionID) {
 	log.Print("OnLogout ", sessionID)
 }
-func (i *InitiatorApp) ToAdmin(msgBuilder quickfix.MessageBuilder, sessionID quickfix.SessionID) {
+func (i *InitiatorApp) ToAdmin(msgBuilder quickfix.Message, sessionID quickfix.SessionID) {
 }
-func (i *InitiatorApp) ToApp(msgBuilder quickfix.MessageBuilder, sessionID quickfix.SessionID) error {
+func (i *InitiatorApp) ToApp(msgBuilder quickfix.Message, sessionID quickfix.SessionID) error {
 	return nil
 }
 

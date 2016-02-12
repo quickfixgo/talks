@@ -25,7 +25,7 @@ func (e *AcceptorApp) OnLogout(sessionID quickfix.SessionID) {
 // END BASE OMIT
 
 // START TO FROM OMIT
-func (e *AcceptorApp) ToAdmin(msgBuilder quickfix.MessageBuilder,
+func (e *AcceptorApp) ToAdmin(msgBuilder quickfix.Message,
 	sessionID quickfix.SessionID) {
 }
 
@@ -34,7 +34,7 @@ func (e *AcceptorApp) FromAdmin(msg quickfix.Message,
 	return nil
 }
 
-func (e *AcceptorApp) ToApp(msgBuilder quickfix.MessageBuilder,
+func (e *AcceptorApp) ToApp(msgBuilder quickfix.Message,
 	sessionID quickfix.SessionID) error {
 	return nil
 }
